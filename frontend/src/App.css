@@ -1,0 +1,84 @@
+.card-wrapper {
+  margin: 20px;
+}
+
+.dim {
+  opacity: 50%;
+}
+
+.header {
+  font-weight: normal;
+  font-family: Tahoma;
+}
+
+.blue {
+  color: #2271b3;
+}
+
+.blue-border {
+  border-color: #3790da;
+}
+
+.no-margin {
+  margin-inline-end: 0px;
+}
+
+.margin-top {
+  margin-top: 18px;
+}
+
+.margin-top-more {
+  margin-top: 30px;
+}
+
+.icon {
+  height: 1em;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+p {
+  margin: 0px;
+}
+
+.button {
+  width: 100%;
+  box-shadow: none;
+  background-color: none;
+  font-size: 1.2rem;
+  font-weight: 200;
+  padding: 20px;
+}
+
+.button-more {
+  box-shadow: none;
+  background-color: none;
+  border: none;
+  padding-left: 0px;
+}
+
+.select-button {
+  width: 100зч;
+}
+
+.ant-select-selector {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ant-select-focused .ant-select-selector {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.tag {
+  border-radius: 10px;
+}
+
+.highlighted {
+  background-color: #277cc2;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+
