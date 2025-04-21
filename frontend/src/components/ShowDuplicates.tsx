@@ -7,6 +7,16 @@ import { Duplicate } from "./Duplicate";
 export const ShowDuplicates = () => {
   const [showDuplicates, setShowDuplicates] = React.useState<boolean>(false);
   const [showBy, setShowBy] = React.useState<string>("");
+  const [duplicateSorted, setDuplicatesSorted] = React.useState(duplicates);
+
+  React.useEffect(() => {
+    if (showBy === "most to least") {
+      setDuplicatesSorted([...duplicates].sort((a, b) => b.REACH - a.REACH));
+    }
+    if (showBy === "least to most") {
+      setDuplicatesSorted([...duplicates].sort((a, b) => a.REACH - b.REACH));
+    }
+  }, [showBy]);
 
   const handleChange = (value: string) => {
     setShowBy(value);
@@ -36,31 +46,29 @@ export const ShowDuplicates = () => {
         </div>
       </Flex>
       {!showDuplicates && (
-        <div className="margin-top">
-          <Duplicate
-            title={duplicates[0].TI}
-            domen={duplicates[0].DOM}
-            url={duplicates[0].URL}
-            icon={duplicates[0].FAV}
-            countryCode={duplicates[0].CNTR_CODE}
-            country={duplicates[0].CNTR}
-            authors={duplicates[0].AU}
-            date={duplicates[0].DP}
-            reach={duplicates[0].REACH}
-          />
-        </div>
+        <>
+          <div className="margin-top">
+            <Duplicate
+              title={duplicates[0].TI}
+              domen={duplicates[0].DOM}
+              url={duplicates[0].URL}
+              icon={duplicates[0].FAV}
+              countryCode={duplicates[0].CNTR_CODE}
+              country={duplicates[0].CNTR}
+              authors={duplicates[0].AU}
+              date={duplicates[0].DP}
+              reach={duplicates[0].REACH}
+            />
+            <div className="margin-top">
+              <CustomButton onClick={handleClick} customClass="button">
+                View Duplicates
+              </CustomButton>
+            </div>
+          </div>
+        </>
       )}
-      <div className="margin-top">
-        {!showDuplicates && (
-          <CustomButton onClick={handleClick} customClass="button">
-            View Duplicates
-          </CustomButton>
-        )}
-      </div>
       {showDuplicates &&
-        duplicates.length &&
-        !showBy &&
-        duplicates.map((duplicate) => (
+        duplicateSorted.map((duplicate) => (
           <div className="margin-top">
             <Duplicate
               title={duplicate.TI}
@@ -75,46 +83,6 @@ export const ShowDuplicates = () => {
             />
           </div>
         ))}
-      {showDuplicates &&
-        duplicates.length &&
-        showBy === "most to least" &&
-        duplicates
-          .sort((a, b) => b.REACH - a.REACH)
-          .map((duplicate) => (
-            <div className="margin-top">
-              <Duplicate
-                title={duplicate.TI}
-                domen={duplicate.DOM}
-                url={duplicate.URL}
-                icon={duplicate.FAV}
-                countryCode={duplicate.CNTR_CODE}
-                country={duplicate.CNTR}
-                authors={duplicate.AU}
-                date={duplicate.DP}
-                reach={duplicate.REACH}
-              />
-            </div>
-          ))}
-      {showDuplicates &&
-        duplicates.length &&
-        showBy === "least to most" &&
-        duplicates
-          .sort((a, b) => a.REACH - b.REACH)
-          .map((duplicate) => (
-            <div className="margin-top">
-              <Duplicate
-                title={duplicate.TI}
-                domen={duplicate.DOM}
-                url={duplicate.URL}
-                icon={duplicate.FAV}
-                countryCode={duplicate.CNTR_CODE}
-                country={duplicate.CNTR}
-                authors={duplicate.AU}
-                date={duplicate.DP}
-                reach={duplicate.REACH}
-              />
-            </div>
-          ))}
     </div>
   );
 };
